@@ -10,4 +10,20 @@ class TelevisionShowsController < ApplicationController
   def new
     @television_show = TelevisionShow.new
   end
+
+  def create
+    @television_show = TelevisionShow.new(television_show_params)
+
+    if @television_show.save
+      flash[:notice] = "Success!"
+      redirect_to '/television_shows'
+    else
+    end
+  end
+
+  private
+
+  def television_show_params
+    params.require(:television_show).permit(:title, :network, :years, :synopsis)
+  end
 end
