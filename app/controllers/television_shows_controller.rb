@@ -18,6 +18,8 @@ class TelevisionShowsController < ApplicationController
       flash[:notice] = "Success!"
       redirect_to '/television_shows'
     else
+      flash.now[:notice] = "Your movie couldn't be saved."
+      render :new
     end
   end
 
