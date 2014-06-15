@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'capybara/rails'
 
 feature 'user views list of TV shows', %Q{
   As a site visitor
