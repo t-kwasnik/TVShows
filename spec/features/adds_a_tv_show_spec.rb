@@ -41,5 +41,20 @@ feature 'user adds a new TV show', %Q{
     expect(page).to have_content "can't be blank"
   end
 
-  scenario 'user cannot add a show that is already in the database'
+  scenario 'user cannot add a show that is already in the database' do
+    attrs = {
+      title: 'Game of Thrones',
+      network: 'HBO'
+    }
+
+    show = TelevisionShow.create(attrs)
+
+    visit '/television_shows/new'
+    fill_in 'Title', with: show.title
+    fill_in 'Network', with: show.network
+    click_on 'Submit'
+
+    expect(page).to_not have_content 'Success'
+    expect(page).to have_content "has already been taken"
+  end
 end
