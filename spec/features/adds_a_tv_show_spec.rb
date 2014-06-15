@@ -33,7 +33,13 @@ feature 'user adds a new TV show', %Q{
     expect(page).to_not have_content show.synopsis
   end
 
-  scenario 'without required attributes'
+  scenario 'without required attributes' do
+    visit '/television_shows/new'
+    click_on 'Submit'
+
+    expect(page).to_not have_content 'Success'
+    expect(page).to have_content "can't be blank"
+  end
 
   scenario 'user cannot add a show that is already in the database'
 end
