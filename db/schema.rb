@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615194423) do
+ActiveRecord::Schema.define(version: 20140615200813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "television_shows", force: true do |t|
-    t.string "title",   null: false
+    t.string "title",    null: false
     t.string "network"
+    t.string "years"
+    t.string "synopsis"
   end
 
   add_index "television_shows", ["title", "network"], name: "index_television_shows_on_title_and_network", unique: true, using: :btree
