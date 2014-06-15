@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user views a TV show', %Q{
+feature "user views a TV show's details", %Q{
   As a site visitor
   I want to view the details for a TV show
   So I can find learn more about it
@@ -11,7 +11,7 @@ feature 'user views a TV show', %Q{
   # * I can see a the show's title, network, the years it ran,
   # and a synopsis.
 
-  scenario 'user views TV shows' do
+  scenario "user views a TV show's details" do
     show = TelevisionShow.create(title: 'Game of Thrones',
       network: 'HBO' )
 
