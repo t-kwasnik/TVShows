@@ -6,5 +6,47 @@
 </ul>
 
 <div>
-  <%= @television_show.synopsis %>
+  <%= @television_show.synopsis %><br>
 </div>
+
+<div>Favorite Characters
+  <ul>
+  <% @television_show.characters.each do |c| %>
+     <li><%= "#{c.character} [#{c.actor}] - #{c.description}" %>
+        <%= link_to "Delete", television_show_character_path(@television_show, c), method: :delete %>
+     </li>
+  <% end %>
+  </ul>
+</div>
+
+
+<h3>Add a character</h3>
+
+<%= form_for [@television_show,@character] do |f| %>
+
+  <% if @television_show.errors.any? %>
+    <ul>
+      <% @television_show.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :character %>
+    <%= f.text_field :character %>
+  </div>
+
+  <div>
+    <%= f.label :actor %>
+    <%= f.text_field :actor %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <%= f.submit 'Submit' %>
+
+<% end %>
